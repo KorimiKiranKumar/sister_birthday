@@ -1,0 +1,1075 @@
+/* ═══════════════════════════════════════════════════════════════
+   CINEMATIC BIRTHDAY EXPERIENCE — MASTER STYLES
+   Premium, Emotional, Mobile-First Visual Hierarchy
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Variables ─────────────────────────────────────────── */
+:root {
+  --pink:       #ff6b9d;
+  --rose:       #ff3f72;
+  --gold:       #ffd166;
+  --lavender:   #d8b4fe;
+  --cream:      #fff5f0;
+  --purple-deep:#14072a;
+  --purple-mid: #2c0b4d;
+  --glass-bg:   rgba(255, 255, 255, 0.10);
+  --glass-bdr:  rgba(255, 255, 255, 0.22);
+  --shadow-big: 0 30px 60px rgba(0, 0, 0, 0.55);
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-hand:  'Dancing Script', cursive;
+  --font-ui:    'Poppins', sans-serif;
+  --ease-cinema: cubic-bezier(0.22, 0.8, 0.28, 1);
+  --ease-spring: cubic-bezier(0.14, 1.1, 0.32, 1);
+}
+
+/* ── Reset ────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0; padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--purple-deep);
+  font-family: var(--font-ui);
+  color: #fff;
+  position: fixed;
+}
+
+/* ── Ambient glow orbs (global background decor) ─────── */
+.ambient-glow-sphere, .ambient-glow-sphere-2 {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(60px);
+  opacity: 0;
+  animation: orb-appear 3s ease forwards;
+}
+.ambient-glow-sphere {
+  width: 420px; height: 420px;
+  top: -100px; left: -80px;
+  background: radial-gradient(circle, rgba(180, 80, 220, 0.55), transparent 70%);
+  animation: orb-appear 3s ease 0.5s forwards, orb-drift-1 18s ease-in-out 3s infinite alternate;
+}
+.ambient-glow-sphere-2 {
+  width: 380px; height: 380px;
+  bottom: -80px; right: -60px;
+  background: radial-gradient(circle, rgba(255, 64, 114, 0.4), transparent 70%);
+  animation: orb-appear 3s ease 1s forwards, orb-drift-2 22s ease-in-out 4s infinite alternate;
+}
+
+/* ── Floating hearts (CSS-only, decorative) ──────────── */
+#floating-hearts {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+#floating-hearts .fh {
+  position: absolute;
+  bottom: -60px;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  opacity: 0;
+  animation: heartFloat 12s ease-in infinite;
+}
+#floating-hearts .fh:nth-child(1) { left: 8%;  animation-duration: 13s; animation-delay: 0s;   font-size: 1.2rem; }
+#floating-hearts .fh:nth-child(2) { left: 20%; animation-duration: 11s; animation-delay: 2.5s; font-size: 1rem; }
+#floating-hearts .fh:nth-child(3) { left: 35%; animation-duration: 15s; animation-delay: 1s;   font-size: 1.3rem; }
+#floating-hearts .fh:nth-child(4) { left: 52%; animation-duration: 12s; animation-delay: 3.5s; font-size: 1rem; }
+#floating-hearts .fh:nth-child(5) { left: 65%; animation-duration: 14s; animation-delay: 0.8s; font-size: 1.2rem; }
+#floating-hearts .fh:nth-child(6) { left: 78%; animation-duration: 11s; animation-delay: 5s;   font-size: 0.9rem; }
+#floating-hearts .fh:nth-child(7) { left: 88%; animation-duration: 13s; animation-delay: 1.8s; font-size: 1.1rem; }
+#floating-hearts .fh:nth-child(8) { left: 42%; animation-duration: 16s; animation-delay: 4s;   font-size: 1.4rem; }
+#floating-hearts .fh:nth-child(9) { left: 5%;  animation-duration: 12s; animation-delay: 6s;   font-size: 0.9rem; }
+
+/* ── Cinema Stage & Viewport ─────────────────────────── */
+#cinema-stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+#cinema-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  max-width: 480px;
+  overflow: hidden;
+  background: transparent;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ── Vignette ────────────────────────────────────────── */
+.cinematic-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(5, 1, 12, 0.72) 100%);
+}
+
+/* ── Canvases ────────────────────────────────────────── */
+#particle-canvas {
+  position: absolute; inset: 0;
+  pointer-events: none; z-index: 6;
+}
+#confetti-canvas {
+  position: absolute; inset: 0;
+  pointer-events: none; z-index: 55;
+}
+
+/* ── Music button ────────────────────────────────────── */
+#music-toggle-btn {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top, 16px));
+  right: max(16px, env(safe-area-inset-right, 16px));
+  z-index: 100;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  background: rgba(20, 7, 42, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #fff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s var(--ease-cinema);
+  outline: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+#music-toggle-btn .music-bars {
+  display: none;
+  gap: 3px;
+  align-items: flex-end;
+  height: 16px;
+}
+#music-toggle-btn .music-bars span {
+  display: block;
+  width: 3.5px; border-radius: 2px;
+  background: linear-gradient(180deg, var(--gold), var(--pink));
+}
+#music-toggle-btn.playing .music-icon { display: none; }
+#music-toggle-btn.playing .music-bars { display: flex; }
+#music-toggle-btn.playing .music-bars span:nth-child(1) { height: 6px;  animation: bar1 0.8s ease infinite alternate; }
+#music-toggle-btn.playing .music-bars span:nth-child(2) { height: 14px; animation: bar2 0.9s ease infinite alternate; }
+#music-toggle-btn.playing .music-bars span:nth-child(3) { height: 9px;  animation: bar3 0.7s ease infinite alternate; }
+#music-toggle-btn.playing .music-bars span:nth-child(4) { height: 12px; animation: bar4 1s   ease infinite alternate; }
+#music-toggle-btn:hover, #music-toggle-btn:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+  transform: scale(1.05);
+}
+#music-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+/* ── Timeline nav dots ───────────────────────────────── */
+#timeline-nav {
+  position: absolute;
+  right: max(10px, env(safe-area-inset-right, 10px));
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 95;
+  display: flex; flex-direction: column; gap: 7px;
+  pointer-events: auto;
+}
+.tdot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  transition: all 0.35s var(--ease-cinema);
+  cursor: pointer;
+}
+.tdot.active {
+  background: var(--pink);
+  height: 18px;
+  border-radius: 8px;
+  box-shadow: 0 0 12px var(--pink);
+}
+
+/* ── Swipe cue ───────────────────────────────────────── */
+.swipe-cue {
+  position: absolute;
+  bottom: max(18px, env(safe-area-inset-bottom, 18px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+  font-weight: 500;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  animation: swipe-bounce 2.2s ease-in-out infinite;
+}
+.swipe-cue-arrow { font-size: 1.15rem; opacity: 0.8; color: var(--pink); }
+
+/* ── SCENE TRACK & SCENES ────────────────────────────── */
+.scene-track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  touch-action: none;
+}
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.scene-bg-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.scene-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 440px;
+  padding: 1.2rem 1.2rem 3.4rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  max-height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scene-content::-webkit-scrollbar { display: none; }
+
+/* ── Per-scene backgrounds ───────────────────────────── */
+.bg-scene0 { background: radial-gradient(ellipse at 30% 20%, #3d0f6b 0%, #1a063b 45%, #07020f 100%); }
+.bg-scene1 { background: radial-gradient(ellipse at 70% 30%, #5b1070 0%, #2a084e 50%, #0d0520 100%); }
+.bg-scene2 { background: linear-gradient(145deg, #1f0835 0%, #3b1060 40%, #5e1a50 100%); }
+.bg-scene3 { background: linear-gradient(160deg, #0e0a2a 0%, #2d0d50 40%, #4a1040 100%); }
+.bg-scene4 { background: radial-gradient(ellipse at 50% 60%, #3a0b5a 0%, #1d0434 60%, #070112 100%); }
+.bg-scene5 { background: radial-gradient(ellipse at 50% 30%, #5c0d3e 0%, #8b0053 30%, #2e0030 70%, #0c0018 100%); }
+.bg-scene6 { background: linear-gradient(150deg, #0d0424 0%, #220760 40%, #3d0f70 100%); }
+.bg-scene7 { background: linear-gradient(130deg, #1a0828 0%, #38114a 50%, #5a1838 100%); }
+.bg-scene8 { background: linear-gradient(155deg, #100426 0%, #2b0948 40%, #4d1255 100%); }
+.bg-scene9 { background: radial-gradient(ellipse at 60% 40%, #4a0e60 0%, #1e0535 60%, #09010e 100%); }
+.bg-scene10 { background: radial-gradient(ellipse at 50% 35%, #650b4a 0%, #3f0962 40%, #15032e 80%, #060009 100%); }
+
+/* ── Typography & Text ───────────────────────────────── */
+.welcome-sparkle {
+  font-size: clamp(2.6rem, 7vw, 3.2rem);
+  filter: drop-shadow(0 0 20px var(--gold));
+  margin-bottom: 0.2rem;
+}
+.welcome-name {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 8.5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  background: linear-gradient(135deg, #ffffff 0%, #ffd1e8 40%, var(--gold) 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.3rem;
+}
+.welcome-name em { font-style: italic; color: var(--pink); -webkit-text-fill-color: var(--pink); }
+.welcome-sub {
+  font-size: clamp(1rem, 3.8vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 300;
+  line-height: 1.55;
+  max-width: 320px;
+}
+.welcome-ready {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 4.5vw, 1.45rem);
+  font-style: italic;
+  color: var(--lavender);
+  margin-top: 0.3rem;
+}
+.big-heart {
+  font-size: clamp(2.8rem, 8vw, 3.5rem);
+  filter: drop-shadow(0 0 25px rgba(255, 64, 114, 0.9));
+  animation: heartbeat 1.4s ease-in-out infinite;
+}
+.scene-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 6.6vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.22;
+  background: linear-gradient(135deg, #ffffff 0%, #ffd6ea 50%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.scene-title em { font-style: italic; }
+.scene-sub {
+  font-size: clamp(0.95rem, 3.6vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.68);
+  font-weight: 300;
+}
+.scene-label {
+  font-size: clamp(0.82rem, 3.2vw, 0.95rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+.scene-small {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ── Quote Cards ─────────────────────────────────────── */
+.intro-quote-card, .memory-quote-card, .scene-quote-box {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 107, 157, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  padding: 0.85rem 1.3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  max-width: 360px;
+  width: 100%;
+}
+.scene-quote-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 4.2vw, 1.25rem);
+  color: #fff1f8;
+  line-height: 1.5;
+}
+
+/* ── START / Glow Buttons ────────────────────────────── */
+.btn-glow {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px;
+  padding: 0.95rem 2.2rem;
+  font-family: var(--font-ui);
+  font-size: clamp(0.98rem, 3.8vw, 1.08rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(255, 64, 114, 0.95), rgba(180, 40, 200, 0.9));
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(255, 64, 114, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.35s var(--ease-spring);
+  animation: btn-pulse 3s ease-in-out infinite;
+}
+.btn-glow:hover, .btn-glow:focus {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 40px rgba(255, 64, 114, 0.75), 0 0 20px rgba(255, 209, 102, 0.45);
+}
+.btn-glow:active { transform: scale(0.97) translateY(0); }
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  animation: none;
+}
+.btn-replay {
+  min-height: 54px;
+  padding: 0.95rem 2.4rem;
+  font-size: clamp(1rem, 3.8vw, 1.1rem);
+  background: linear-gradient(135deg, rgba(255, 64, 114, 0.88), rgba(150, 30, 180, 0.85));
+  border: 1.5px solid rgba(255, 255, 255, 0.32);
+}
+
+/* ── Polaroid Photo Frame System ─────────────────────── */
+.polaroid-frame {
+  background: #ffffff;
+  padding: 8px 8px 32px;
+  border-radius: 6px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.52), 0 3px 10px rgba(0, 0, 0, 0.25);
+  position: relative;
+  transition: transform 0.4s var(--ease-cinema), box-shadow 0.4s ease;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+.polaroid-img-wrapper {
+  position: relative;
+  width: 100%;
+  flex: 1 1 0;
+  min-height: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #2a0b4d;
+}
+.polaroid-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  border-radius: 3px;
+  transition: transform 0.4s ease;
+}
+.polaroid-caption {
+  position: absolute;
+  bottom: 6px; left: 0; width: 100%;
+  text-align: center;
+  font-family: var(--font-hand);
+  font-size: clamp(1rem, 3.8vw, 1.2rem);
+  font-weight: 600;
+  color: #3b1d4a;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 6px;
+}
+.tilt-left  { transform: rotate(-3deg); }
+.tilt-right { transform: rotate(3deg); }
+.float-frame { animation: floatPolaroid 5s ease-in-out infinite alternate; }
+.float-frame.slow { animation-duration: 7s; animation-delay: -3s; }
+
+/* ── Scene 2 Hero Frame ──────────────────────────────── */
+.scene-memory-1 .hero-polaroid {
+  width: min(290px, 80vw);
+  height: min(340px, 46vh);
+  margin: 0.3rem 0;
+}
+
+/* ══════════════════════════════════════════════════════
+   SCENE 3 — MOMENTS WE CHERISH 💕
+   Dominant 4-photo collage with large clear visual area
+   ══════════════════════════════════════════════════════ */
+.scene-collage .scene-content {
+  padding: 1rem 1rem 2.8rem;
+  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.collage-title {
+  font-size: clamp(24px, 6.8vw, 32px);
+  margin-top: 0.4rem;
+  margin-bottom: 0.2rem;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+.collage-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+  width: 100%;
+  max-width: 380px;
+  height: min(480px, 62vh);
+  min-height: 320px;
+  margin: 0 auto;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+.collage-card {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
+  min-width: 0;
+  padding: 6px 6px 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  transform-origin: center center;
+  transform: rotate(var(--rot, 0deg));
+  transition: transform 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28), box-shadow 0.35s ease, z-index 0.2s ease;
+  z-index: 1;
+}
+.collage-card .polaroid-img-wrapper {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  height: calc(100% - 24px);
+}
+.collage-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+}
+.collage-card.c1 img { object-position: center 10%; }
+.collage-card.c2 img { object-position: center 12%; }
+.collage-card.c3 img { object-position: center 6%; }  /* Cat ears fully visible */
+.collage-card.c4 img { object-position: center 10%; }
+
+/* Card Rotations */
+.collage-card.c1 { --rot: -2deg; }
+.collage-card.c2 { --rot: 1.5deg; }
+.collage-card.c3 { --rot: -1deg; }
+.collage-card.c4 { --rot: 2deg; }
+
+/* Staggered card entrance animations inside Scene 3 */
+.scene-collage.active .collage-card.c1 { animation: cardEnterLeft  0.85s var(--ease-cinema) 0.10s both; }
+.scene-collage.active .collage-card.c2 { animation: cardEnterRight 0.85s var(--ease-cinema) 0.18s both; }
+.scene-collage.active .collage-card.c3 { animation: cardEnterLeft  0.85s var(--ease-cinema) 0.26s both; }
+.scene-collage.active .collage-card.c4 { animation: cardEnterRight 0.85s var(--ease-cinema) 0.34s both; }
+
+.collage-card .polaroid-caption {
+  font-size: clamp(15px, 4.2vw, 18px);
+  font-weight: 600;
+  bottom: 4px;
+  line-height: 1.2;
+}
+
+/* Interactive focus / touch on collage cards */
+.collage-card:hover,
+.collage-card:active,
+.collage-card.focused {
+  transform: scale(1.12) rotate(0deg) !important;
+  z-index: 40;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.75), 0 0 25px rgba(255, 107, 157, 0.55) !important;
+}
+.collage-card:hover img,
+.collage-card:active img,
+.collage-card.focused img {
+  transform: scale(1.03);
+}
+.collage-card:hover .polaroid-caption,
+.collage-card:active .polaroid-caption,
+.collage-card.focused .polaroid-caption {
+  color: var(--rose);
+}
+
+/* ── Scene 4 — Emotional Message ─────────────────────── */
+.emotion-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 2.2rem 1.6rem;
+  width: 100%; max-width: 380px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.emotion-flower { font-size: 2.4rem; filter: drop-shadow(0 0 12px #ff80b0); margin-bottom: 0.5rem; }
+.em-line {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 4.4vw, 1.35rem);
+  line-height: 1.8;
+  color: #ffe5f0;
+  margin-bottom: 0.6rem;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.em-line.show { opacity: 1; transform: translateY(0); }
+.em-highlight {
+  font-size: clamp(1.35rem, 5.8vw, 1.75rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, var(--pink) 60%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 0.7rem;
+}
+
+/* ── Scene 5 — Birthday Reveal 🎂 ────────────────────── */
+.cake-icon {
+  font-size: clamp(3.2rem, 10vw, 4rem);
+  filter: drop-shadow(0 0 30px var(--gold));
+  animation: cakePop 0.7s var(--ease-spring) both;
+}
+.reveal-main-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 9.5vw, 3.6rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, var(--gold) 35%, var(--pink) 70%, #fff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shine 4s linear infinite;
+  filter: drop-shadow(0 2px 20px rgba(255, 209, 102, 0.45));
+}
+.reveal-sister {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 4.8vw, 1.55rem);
+  font-style: italic;
+  color: var(--lavender);
+  letter-spacing: 0.04em;
+}
+.reveal-wishes {
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+  font-size: clamp(0.95rem, 3.6vw, 1.05rem);
+  line-height: 1.7;
+  color: #ffe8f3;
+  backdrop-filter: blur(10px);
+  max-width: 360px;
+}
+.reveal-sparkle-row {
+  font-size: 1.35rem;
+  letter-spacing: 0.5em;
+  animation: shimmerRow 2s ease-in-out infinite alternate;
+}
+
+/* ── Scene 6 — 3D Gallery ────────────────────────────── */
+.gallery-stage {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: min(380px, 52vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  margin: 0.2rem auto;
+}
+.gallery-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.g-card {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(240px, 66vw);
+  height: min(320px, 46vh);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.55s var(--ease-cinema), opacity 0.55s ease, filter 0.55s ease;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+}
+.g-card img { width: 100%; height: 78%; object-fit: cover; object-position: center 15%; }
+.g-card-info {
+  flex: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  align-items: center; gap: 2px;
+  padding: 0.4rem 0.7rem;
+  background: #fff;
+  text-align: center;
+}
+.g-card-info strong { font-family: var(--font-serif); font-size: 1.05rem; color: #3b2060; }
+.g-card-info span { font-size: 0.78rem; color: #777; }
+.gallery-controls {
+  display: flex; align-items: center; gap: 1.1rem;
+  justify-content: center;
+  margin-top: 0.3rem;
+}
+.gal-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  color: #fff; font-size: 1.4rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.25s ease;
+  outline: none;
+}
+.gal-btn:hover, .gal-btn:active { background: var(--pink); border-color: var(--pink); transform: scale(1.08); }
+.gallery-dots-row { display: flex; gap: 6px; align-items: center; }
+.gallery-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.gallery-dot.active { background: var(--pink); transform: scale(1.3); box-shadow: 0 0 8px var(--pink); }
+
+/* ── Scene 7 — Letter ────────────────────────────────── */
+.letter-card {
+  background: linear-gradient(160deg, #fffcf5, #faf0e8);
+  border-radius: 12px;
+  padding: 1.6rem 1.4rem;
+  width: 100%; max-width: 380px;
+  max-height: min(440px, 58vh);
+  overflow-y: auto;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.55), inset 0 0 30px rgba(210, 180, 150, 0.25);
+  border: 1px solid #f0e0cb;
+  transform: rotate(-0.8deg);
+  scrollbar-width: thin;
+}
+.letter-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 0.9rem;
+}
+.letter-greeting {
+  font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: #5c1e3d;
+}
+.letter-wax { font-size: 1.5rem; }
+.letter-body { font-size: 0.95rem; line-height: 1.75; color: #4a3040; text-align: left; }
+.letter-body p { margin-bottom: 0.75rem; }
+.letter-sig {
+  font-family: var(--font-hand);
+  font-size: 1.45rem;
+  color: #7d244f;
+  margin-top: 0.9rem;
+  text-align: right;
+}
+
+/* ══════════════════════════════════════════════════════
+   SCENE 8 — MORE MEMORIES / EVERY CHAPTER OF YOU ✨
+   Dominant 2 large photos + elegant quote container
+   ══════════════════════════════════════════════════════ */
+.scene-photos-2 .scene-content {
+  padding: 1rem 1rem 2.8rem;
+  gap: 0.6rem;
+  justify-content: center;
+}
+.scene-photos-2 .scene-label {
+  font-size: clamp(13px, 3.6vw, 15px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.scene-photos-2 .scene-title {
+  font-size: clamp(26px, 7vw, 34px);
+  line-height: 1.2;
+}
+.double-photos {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 390px;
+  margin: 0.4rem auto;
+}
+.double-photos .polaroid-frame {
+  width: min(185px, 47vw);
+  height: min(285px, 42vh);
+  padding: 7px 7px 32px;
+  border-radius: 6px;
+  background: #ffffff;
+  cursor: pointer;
+  transform-origin: center center;
+  transition: transform 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28), box-shadow 0.35s ease, z-index 0.2s ease;
+  z-index: 1;
+}
+.double-photos .polaroid-frame.p1 { transform: rotate(2.5deg); }
+.double-photos .polaroid-frame.p2 { transform: rotate(-2.5deg); }
+.double-photos .polaroid-frame .polaroid-img-wrapper {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+}
+.double-photos .polaroid-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+}
+.double-photos .polaroid-caption {
+  font-size: clamp(15px, 4.2vw, 18px);
+  font-weight: 600;
+  bottom: 5px;
+}
+.double-photos .polaroid-frame:hover,
+.double-photos .polaroid-frame:active,
+.double-photos .polaroid-frame.focused {
+  transform: scale(1.12) rotate(0deg) !important;
+  z-index: 35;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.75), 0 0 25px rgba(255, 107, 157, 0.55) !important;
+}
+
+/* ── Scene 9 — Gift Surprise 🎁 ──────────────────────── */
+.gift-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: min(340px, 50vh);
+  width: 100%;
+}
+.gift-wrapper {
+  position: relative;
+  width: 130px; height: 130px;
+  cursor: pointer;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  z-index: 5;
+}
+.gift-wrapper:hover { transform: scale(1.06); }
+.gift-lid {
+  position: absolute;
+  top: 0; left: -6px;
+  width: 142px; height: 38px;
+  background: linear-gradient(135deg, #ff4071, #ff7baa);
+  border-radius: 8px 8px 3px 3px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  transition: transform 0.8s var(--ease-spring), opacity 0.4s ease;
+  transform-origin: top center;
+}
+.gift-bow {
+  position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
+  font-size: 2rem; filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.25));
+}
+.gift-rib-v {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 22px; height: 100%;
+  background: linear-gradient(180deg, #ffd166, #f4a261);
+}
+.gift-rib-h {
+  position: absolute; top: 50%; left: 0; transform: translateY(-50%);
+  width: 100%; height: 22px;
+  background: linear-gradient(90deg, #ffd166, #f4a261);
+}
+.gift-body {
+  position: absolute;
+  top: 28px; left: 0;
+  width: 130px; height: 102px;
+  background: linear-gradient(135deg, #e0164f, #ff4477);
+  border-radius: 3px 3px 10px 10px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  z-index: 5;
+  transition: transform 0.7s ease, opacity 0.4s ease;
+}
+.gift-reveal {
+  position: absolute;
+  inset: 0;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 0.5rem;
+  opacity: 0; visibility: hidden;
+  transform: scale(0.6) translateY(25px);
+  transition: all 0.85s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  z-index: 25;
+}
+.gift-reveal .polaroid-frame.gift-photo {
+  width: min(275px, 78vw);
+  height: min(325px, 45vh);
+  padding: 8px 8px 32px;
+  background: #ffffff;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 107, 157, 0.45);
+}
+.gift-msg {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 4.2vw, 1.25rem);
+  color: #fde8f3;
+  margin-top: 0.2rem;
+}
+.gift-note { font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); }
+
+#gift-stage.opened .gift-wrapper {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: scale(0) !important;
+}
+#gift-stage.opened .gift-reveal {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1) translateY(0) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   SCENE 10 — FINAL CLIMAX CELEBRATION 🎉
+   Hero birthday text, sister name, horizontal cinematic
+   photo carousel strip, generous final words, replay button
+   ══════════════════════════════════════════════════════ */
+.scene-final .scene-content {
+  padding: 1rem 1rem 2.8rem;
+  gap: 0.6rem;
+  justify-content: center;
+}
+.final-emoji {
+  font-size: clamp(56px, 15vw, 76px);
+  filter: drop-shadow(0 0 28px rgba(255, 209, 102, 0.95));
+  animation: celebrationPop 0.8s var(--ease-spring) 0.1s both;
+  line-height: 1;
+}
+.final-hero-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+.final-title {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 9.5vw, 48px);
+  font-weight: 800;
+  line-height: 1.12;
+  background: linear-gradient(135deg, #ffffff 0%, #ffd6e8 35%, var(--gold) 75%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shine 3.5s linear infinite;
+  filter: drop-shadow(0 2px 18px rgba(255, 209, 102, 0.45));
+}
+.final-sister {
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 10vw, 52px);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.15;
+  background: linear-gradient(135deg, #fff 0%, #ff80b0 40%, var(--gold) 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: sisterGlowPulse 3s ease-in-out infinite alternate;
+}
+
+/* ── Horizontal Cinematic Photo Strip ────────────────── */
+.final-strip-container {
+  width: 100%;
+  max-width: 410px;
+  overflow: visible;
+  margin: 0.3rem 0;
+}
+.final-strip {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: auto;
+  padding: 8px 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+.final-strip::-webkit-scrollbar { display: none; }
+
+.strip-card {
+  width: min(118px, 28vw);
+  height: min(150px, 19vh);
+  background: #ffffff;
+  padding: 5px 5px 22px;
+  border-radius: 5px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+  transform: rotate(var(--r, 0deg));
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.strip-card:hover, .strip-card:active {
+  transform: scale(1.08) rotate(0deg) !important;
+  z-index: 10;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75), 0 0 18px rgba(255, 107, 157, 0.5);
+}
+.strip-img-wrapper {
+  width: 100%;
+  flex: 1 1 0;
+  min-height: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #2a0b4d;
+}
+.strip-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+}
+.strip-caption {
+  position: absolute;
+  bottom: 3px; left: 0; width: 100%;
+  text-align: center;
+  font-family: var(--font-hand);
+  font-size: clamp(12px, 3.2vw, 14px);
+  font-weight: 600;
+  color: #3b1d4a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 3px;
+}
+
+.final-words {
+  list-style: none;
+  padding: 0;
+  display: flex; flex-direction: column; gap: 0.55rem;
+  margin: 0.3rem 0;
+}
+.final-words li {
+  font-family: var(--font-serif);
+  font-size: clamp(18px, 4.8vw, 22px);
+  color: #ffe6f2;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+.final-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.2rem;
+}
+.made-with-love {
+  font-size: clamp(14px, 3.6vw, 16px);
+  color: rgba(255, 255, 255, 0.68);
+  font-weight: 400;
+}
+
+/* ── Preloader ───────────────────────────────────────── */
+#experience-loader {
+  position: fixed; inset: 0;
+  z-index: 999;
+  background: var(--purple-deep);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1rem;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+#experience-loader.hidden { opacity: 0; visibility: hidden; }
+.loader-heart {
+  font-size: 3.2rem;
+  animation: heartbeat 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px #ff4070);
+}
+.loader-text {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--lavender);
+  letter-spacing: 0.05em;
+}
+.loader-dots { animation: dotdot 1.5s steps(3, end) infinite; }
+
+/* ── Reveal Stagger Items ─────────────────────────────── */
+.ri {
+  opacity: 0;
+  transform: translateY(22px) scale(0.97);
+  filter: blur(6px);
+  transition: opacity 0.95s var(--ease-cinema),
+              transform 0.95s var(--ease-cinema),
+              filter 0.9s ease;
+}
+.scene.active .ri { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+.scene.active .delay-1 { transition-delay: 0.12s; }
+.scene.active .delay-2 { transition-delay: 0.30s; }
+.scene.active .delay-3 { transition-delay: 0.48s; }
+.scene.active .delay-4 { transition-delay: 0.68s; }
+.scene.active .delay-5 { transition-delay: 0.88s; }

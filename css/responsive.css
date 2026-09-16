@@ -1,0 +1,283 @@
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — Mobile-First, Multi-Viewport Engine
+   Tested specifically for 320px, 360px, 375px, 390px, 414px
+   ═══════════════════════════════════════════════════ */
+
+/* ── Base Mobile Adjustments (<= 480px) ─────────── */
+@media (max-width: 480px) {
+  #cinema-viewport {
+    max-width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+    padding-top: max(10px, env(safe-area-inset-top, 10px));
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 12px));
+  }
+
+  .scene-content {
+    padding: 0.8rem 1rem 3.2rem;
+    gap: 0.6rem;
+  }
+
+  /* Scene 2 hero */
+  .scene-memory-1 .hero-polaroid {
+    width: min(280px, 82vw);
+    height: min(330px, 46vh);
+  }
+
+  /* Scene 3 collage */
+  .scene-collage .scene-content {
+    padding: 0.6rem 0.9rem 2.6rem;
+    gap: 0.5rem;
+  }
+  .collage-grid {
+    gap: 12px;
+    height: min(460px, 60vh);
+  }
+
+  /* Scene 6 gallery */
+  .g-card {
+    width: min(235px, 68vw);
+    height: min(305px, 45vh);
+  }
+  .gallery-stage {
+    height: min(360px, 50vh);
+  }
+
+  /* Scene 8 double photos */
+  .double-photos {
+    gap: 10px;
+  }
+  .double-photos .polaroid-frame {
+    width: min(180px, 46vw);
+    height: min(275px, 41vh);
+  }
+
+  /* Scene 9 gift */
+  .gift-reveal .polaroid-frame.gift-photo {
+    width: min(270px, 78vw);
+    height: min(320px, 44vh);
+  }
+
+  /* Scene 10 final strip */
+  .strip-card {
+    width: min(115px, 28vw);
+    height: min(145px, 19vh);
+  }
+}
+
+/* ── Screen Range: 390px - 413px (Reference Viewport) ── */
+@media (min-width: 390px) and (max-width: 413px) {
+  .collage-grid {
+    gap: 14px;
+    height: min(475px, 62vh);
+  }
+  .double-photos .polaroid-frame {
+    width: 180px;
+    height: 275px;
+  }
+}
+
+/* ── Screen Range: 414px+ (Large Mobile Devices) ── */
+@media (min-width: 414px) and (max-width: 480px) {
+  .scene-content {
+    padding: 1rem 1.2rem 3.4rem;
+    gap: 0.75rem;
+  }
+  .collage-grid {
+    gap: 16px;
+    height: min(490px, 62vh);
+    max-width: 390px;
+  }
+  .double-photos .polaroid-frame {
+    width: 190px;
+    height: 285px;
+  }
+  .strip-card {
+    width: 125px;
+    height: 155px;
+  }
+}
+
+/* ── Screen Range: 360px - 374px (Standard Android) ── */
+@media (min-width: 360px) and (max-width: 374px) {
+  .scene-content {
+    padding: 0.6rem 0.8rem 2.8rem;
+    gap: 0.5rem;
+  }
+  .collage-grid {
+    gap: 10px;
+    height: min(430px, 58vh);
+  }
+  .double-photos .polaroid-frame {
+    width: 165px;
+    height: 250px;
+  }
+  .strip-card {
+    width: 105px;
+    height: 135px;
+  }
+}
+
+/* ── Screen Range: 320px - 359px (Ultra Compact / SE) ── */
+@media (max-width: 359px) {
+  .scene-content {
+    padding: 0.4rem 0.6rem 2.4rem;
+    gap: 0.4rem;
+  }
+  .welcome-sparkle { font-size: 2.2rem; }
+  .welcome-name { font-size: 1.95rem; }
+  .scene-title  { font-size: 1.55rem; }
+  .collage-title { font-size: 1.45rem; }
+  .reveal-main-title { font-size: 2rem; }
+  .final-title { font-size: 2.1rem; }
+  .final-sister { font-size: 2.2rem; }
+
+  .scene-memory-1 .hero-polaroid {
+    width: 245px;
+    height: 285px;
+  }
+  .collage-grid {
+    gap: 8px;
+    height: min(400px, 58vh);
+    min-height: 270px;
+  }
+  .collage-card {
+    padding: 5px 5px 24px;
+  }
+  .collage-card .polaroid-caption {
+    font-size: 0.95rem;
+  }
+  .double-photos {
+    gap: 8px;
+  }
+  .double-photos .polaroid-frame {
+    width: 150px;
+    height: 230px;
+    padding: 5px 5px 26px;
+  }
+  .double-photos .polaroid-caption {
+    font-size: 0.95rem;
+  }
+  .g-card {
+    width: 195px;
+    height: 260px;
+  }
+  .gallery-stage {
+    height: 290px;
+  }
+  .letter-card {
+    padding: 1.2rem 1rem;
+    max-height: min(390px, 56vh);
+  }
+  .gift-reveal .polaroid-frame.gift-photo {
+    width: 240px;
+    height: 280px;
+  }
+  .strip-card {
+    width: 95px;
+    height: 125px;
+    padding: 4px 4px 18px;
+  }
+  .final-words li {
+    font-size: 1.05rem;
+  }
+}
+
+/* ── Short viewport height safety (<= 700px) ─────── */
+@media (max-height: 700px) and (orientation: portrait) {
+  .scene-content {
+    padding-top: 0.4rem;
+    padding-bottom: 2.2rem;
+    gap: 0.4rem;
+  }
+  .welcome-sparkle, .big-heart, .cake-icon, .final-emoji {
+    font-size: 2.2rem;
+  }
+  .collage-grid {
+    height: 52vh;
+    min-height: 260px;
+  }
+  .scene-memory-1 .hero-polaroid {
+    height: 38vh;
+  }
+  .double-photos .polaroid-frame {
+    height: 36vh;
+  }
+  .g-card {
+    height: 38vh;
+  }
+  .gallery-stage {
+    height: 42vh;
+  }
+  .letter-card {
+    max-height: 50vh;
+  }
+  .final-words {
+    gap: 0.3rem;
+  }
+  .final-strip-container {
+    margin: 0.15rem 0;
+  }
+}
+
+/* ── Desktop / Tablet framing (> 480px) ─────────── */
+@media (min-width: 481px) {
+  #cinema-stage {
+    background: radial-gradient(circle at 50% 40%, #1d0640 0%, #0a0215 70%, #030007 100%);
+  }
+  #cinema-viewport {
+    max-width: 430px;
+    height: 92vh;
+    height: 92dvh;
+    max-height: 900px;
+    border-radius: 44px;
+    border: 7px solid rgba(255, 255, 255, 0.09);
+    box-shadow:
+      0 30px 90px rgba(0, 0, 0, 0.9),
+      0 0 50px rgba(255, 107, 157, 0.2),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+  /* Phone notch pill on desktop */
+  #cinema-viewport::before {
+    content: '';
+    position: absolute;
+    top: 12px; left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 4px;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 4px;
+    z-index: 200;
+    pointer-events: none;
+  }
+}
+
+/* ── Large desktop (>= 1200px) ──────────────────── */
+@media (min-width: 1200px) {
+  #cinema-viewport {
+    max-width: 440px;
+    max-height: 920px;
+  }
+}
+
+/* ── Landscape mobile safety ─────────────────────── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .scene-content {
+    padding: 0.4rem 0.9rem 0.5rem;
+    overflow-y: auto;
+    justify-content: flex-start;
+    gap: 0.35rem;
+  }
+  .welcome-name, .scene-title, .reveal-main-title, .final-title, .final-sister {
+    font-size: 1.3rem;
+  }
+  .collage-grid { height: 200px; }
+  .gallery-stage { height: 200px; }
+  .g-card { height: 185px; }
+  .scene-memory-1 .hero-polaroid { width: 130px; height: 160px; }
+  .double-photos .polaroid-frame { width: 110px; height: 135px; }
+  .gift-stage { min-height: 150px; }
+  .strip-card { width: 80px; height: 105px; }
+}

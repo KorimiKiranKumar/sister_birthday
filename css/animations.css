@@ -1,0 +1,151 @@
+/* ═══════════════════════════════════════════════════
+   CINEMATIC BIRTHDAY — KEYFRAMES & ANIMATIONS
+   ═══════════════════════════════════════════════════ */
+
+/* ── Ambient Orb Drift ───────────────────────────── */
+@keyframes orb-appear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes orb-drift-1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(50px, -40px) scale(1.1); }
+  100% { transform: translate(-35px, 25px) scale(0.96); }
+}
+@keyframes orb-drift-2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-45px, -35px) scale(1.06); }
+  100% { transform: translate(35px, 20px) scale(1.12); }
+}
+
+/* ── Floating Hearts ─────────────────────────────── */
+@keyframes heartFloat {
+  0%   { transform: translateY(0) rotate(0deg) scale(0.7); opacity: 0; }
+  10%  { opacity: 0.65; }
+  85%  { opacity: 0.45; }
+  100% { transform: translateY(-110vh) rotate(30deg) scale(1.1); opacity: 0; }
+}
+
+/* ── Heartbeat ───────────────────────────────────── */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  30%       { transform: scale(1.16); }
+  60%       { transform: scale(1.05); }
+}
+
+/* ── Swipe Cue Bounce ────────────────────────────── */
+@keyframes swipe-bounce {
+  0%, 40%, 60%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  20% { transform: translateX(-50%) translateY(-6px); }
+  50% { transform: translateX(-50%) translateY(-3px); }
+}
+
+/* ── Button Pulse ────────────────────────────────── */
+@keyframes btn-pulse {
+  0%, 100% { box-shadow: 0 8px 30px rgba(255,64,114,0.5), inset 0 1px 0 rgba(255,255,255,0.4); }
+  50%       { box-shadow: 0 12px 42px rgba(255,64,114,0.85), 0 0 25px rgba(255,209,102,0.4), inset 0 1px 0 rgba(255,255,255,0.6); }
+}
+
+/* ── Polaroid Float ──────────────────────────────── */
+@keyframes floatPolaroid {
+  0%   { transform: rotate(-4deg) translateY(0); }
+  100% { transform: rotate(-4deg) translateY(-8px); }
+}
+@keyframes floatPolaroidR {
+  0%   { transform: rotate(4deg) translateY(0); }
+  100% { transform: rotate(4deg) translateY(-8px); }
+}
+.tilt-right { animation: floatPolaroidR 5s ease-in-out infinite alternate; }
+
+/* ── Shine / Gradient Flow ───────────────────────── */
+@keyframes shine {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── Cake & Emoji Pop ────────────────────────────── */
+@keyframes cakePop {
+  0%   { transform: scale(0.5); opacity: 0; }
+  65%  { transform: scale(1.14); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes celebrationPop {
+  0%   { transform: scale(0.65) translateY(12px); opacity: 0; }
+  65%  { transform: scale(1.08) translateY(-4px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* ── Sister Name Glow Pulse ──────────────────────── */
+@keyframes sisterGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 14px rgba(255,107,157,0.5));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 24px rgba(255,107,157,0.85)) drop-shadow(0 0 35px rgba(255,209,102,0.45));
+    transform: scale(1.025);
+  }
+}
+
+/* ── Sparkle Row shimmer ─────────────────────────── */
+@keyframes shimmerRow {
+  from { opacity: 0.65; letter-spacing: 0.4em; }
+  to   { opacity: 1;    letter-spacing: 0.55em; }
+}
+
+/* ── Gift Wobble ─────────────────────────────────── */
+@keyframes giftWobble {
+  0%, 100% { transform: rotate(0) scale(1); }
+  25%       { transform: rotate(-6deg) scale(1.03); }
+  75%       { transform: rotate(6deg) scale(1.03); }
+}
+.gift-wrapper.wobble { animation: giftWobble 0.75s ease-in-out infinite; }
+
+/* ── Card Staggered Entrance Keyframes ───────────── */
+@keyframes cardEnterLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-35px, 20px, 0) scale(0.92) rotate(-6deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1) rotate(var(--rot, 0deg));
+  }
+}
+
+@keyframes cardEnterRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(35px, 20px, 0) scale(0.92) rotate(6deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1) rotate(var(--rot, 0deg));
+  }
+}
+
+/* ── Music bars ──────────────────────────────────── */
+@keyframes bar1 { from { height: 4px; } to { height: 12px; } }
+@keyframes bar2 { from { height: 8px; } to { height: 14px; } }
+@keyframes bar3 { from { height: 5px; } to { height: 11px; } }
+@keyframes bar4 { from { height: 10px; } to { height: 6px; } }
+
+/* ── Loader dots ─────────────────────────────────── */
+@keyframes dotdot {
+  0%   { content: ''; }
+  33%  { content: '.'; }
+  66%  { content: '..'; }
+  100% { content: '...'; }
+}
+
+/* ── prefers-reduced-motion safety ──────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .ri { opacity: 1 !important; transform: none !important; filter: none !important; }
+}

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#14072a">
+  <title>Happy Birthday Chelli ❤️ | A Cinematic Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Cinematic Preloader -->
+  <div id="experience-loader">
+    <div class="loader-heart">❤️</div>
+    <div class="loader-text">Preparing your surprise<span class="loader-dots">...</span></div>
+  </div>
+
+  <!-- Floating background hearts (decorative, CSS-driven) -->
+  <div id="floating-hearts" aria-hidden="true">
+    <span class="fh">💕</span><span class="fh">✨</span><span class="fh">💖</span>
+    <span class="fh">🌸</span><span class="fh">💫</span><span class="fh">✨</span>
+    <span class="fh">💕</span><span class="fh">💖</span><span class="fh">🌸</span>
+  </div>
+
+  <!-- Global ambient glow sphere -->
+  <div class="ambient-glow-sphere" aria-hidden="true"></div>
+  <div class="ambient-glow-sphere-2" aria-hidden="true"></div>
+
+  <main id="cinema-stage">
+    <div id="cinema-viewport">
+
+      <!-- Vignette -->
+      <div class="cinematic-vignette" aria-hidden="true"></div>
+
+      <!-- Particle & Confetti Canvases -->
+      <canvas id="particle-canvas" aria-hidden="true"></canvas>
+      <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+      <!-- Music Toggle -->
+      <button id="music-toggle-btn" aria-label="Toggle music" title="Music">
+        <span class="music-icon">🎵</span>
+        <span class="music-bars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
+      </button>
+
+      <!-- Scene Timeline Dots -->
+      <nav id="timeline-nav" aria-label="Scene navigation"></nav>
+
+      <!-- Swipe cue -->
+      <div class="swipe-cue" id="swipe-cue" aria-hidden="true">
+        <div class="swipe-cue-arrow">↑</div>
+        <span>swipe up</span>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
+           SCENE TRACK — all scenes stacked vertically
+           ═══════════════════════════════════════════════ -->
+      <div id="scene-track" class="scene-track">
+
+        <!-- ┌────────────────────────────────────────┐
+             │  SCENE 0  — WELCOME / START            │
+             └────────────────────────────────────────┘ -->
+        <section id="scene-0" class="scene scene-welcome active" aria-label="Welcome">
+          <div class="scene-bg-gradient bg-scene0"></div>
+          <div class="scene-content">
+            <div class="welcome-sparkle ri delay-1">✨</div>
+            <h1 class="welcome-name ri delay-2">Hey <em>Sis</em>...</h1>
+            <p class="welcome-sub ri delay-3">Someone made a little surprise just for you.</p>
+            <p class="welcome-ready ri delay-4">Are you ready? 🥹</p>
+            <div class="ri delay-5">
+              <button id="btn-start-surprise" class="btn-glow">
+                <span>✨ Start the Surprise ✨</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ┌────────────────────────────────────────┐
+             │  SCENE 1  — INTRO "HEY SIS"           │
+             └────────────────────────────────────────┘ -->
+        <section id="scene-1" class="scene scene-intro" aria-label="Introduction">
+          <div class="scene-bg-gradient bg-scene1"></div>
+          <div class="scene-content">
+            <div class="big-heart ri delay-1">💖</div>
+            <h2 class="scene-title ri delay-2">Hey <em>Chelli</em>...</h2>
+            <p class="scene-sub ri delay-3">Today is a little different.</p>
+            <div class="intro-quote-card ri delay-4">
+              <p class="scene-quote-text">"Because today is all about <strong>YOU</strong> ❤️"</p>
+            </div>
+            <p class="scene-small ri delay-5">This is your special story.</p>
+          </div>
+        </section>
+
+        <!-- ┌────────────────────────────────────────┐
+             │  SCENE 2  — FIRST PHOTO MEMORY        │
+             └────────────────────────────────────────┘ -->
+        <section id="scene-2" class="scene scene-memory-1" aria-label="First memory">
+          <div class="scene-bg-gradient bg-scene2"></div>
+          <div class="scene-content">
+            <p class="scene-label ri delay-1">📸 &nbsp;First Memory</p>
+            <h2 class="scene-title ri delay-2">Where it all begins...</h2>
+            <div class="polaroid-frame hero-polaroid ri delay-3 tilt-left float-frame">
+              <div class="polaroid-img-wrapper">
+                <img src="images/sister-001.jpeg" alt="Sister memory" loading="lazy">
+              </div>
+              <div class="polaroid-caption">One beautiful memory ❤️</div>
+            </div>
+            <div class="memory-quote-card ri delay-4">
+              <p>"Every smile of yours brightens the whole world."</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ┌────────────────────────────────────────┐
+             │  SCENE 3  — MEMORY COLLAGE (4 photos) │
+             └────────────────────────────────────────┘ -->
+        <section id="scene-3" class="scene scene-collage" aria-label="Photo memories">
+          <div class="scene-bg-gradient bg-scene3"></div>
+          <div class="scene-content">
+            <h2 class="scene-title collage-title ri delay-1">Moments We Cherish 💕</h2>
+            <div class="collage-grid ri delay-2">
+              <div class="polaroid-frame collage-card c1" style="--rot: -2deg;">
+                <div class="polaroid-img-wrapper">
+                  <img src="images/sister-002.jpeg" alt="That smile" loading="lazy">
+                </div>
+                <div class="polaroid-caption">That smile ❤️</div>
+              </div>
+              <div class="polaroid-frame collage-card c2" style="--rot: 1.5deg;">
+                <div class="polaroid-img-wrapper">
+                  <img src="images/sister-003.jpeg" alt="That moment" loading="lazy">
+                </div>
+                <div class="polaroid-caption">That moment ✨</div>
+              </div>
+              <div class="polaroid-frame collage-card c3" style="--rot: -1deg;">
+                <div class="polaroid-img-wrapper">
+                  <img src="images/sister-004.jpeg" alt="That memory" loading="lazy">
+                </div>
+                <div class="polaroid-caption">That memory 🥹</div>
+              </div>
+              <div class="polaroid-frame collage-card c4" style="--rot: 2deg;">
+                <div class="polaroid-img-wrapper">
+                  <img src="images/sister-005.jpeg" alt="Always special" loading="lazy">
+                </div>
+                <div class="polaroid-caption">Always special 💕</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ┌────────────────────────────────────────┐
+             │  SCENE 4  — EMOTIONAL MESSAGE         │
+             └────────────────────────────────────────┘ -->
+        <section id="scene-4" class="scene scene-emotional" aria-label="Emotional message">
+          <div class="scene-bg-gradient bg-scene4"></div>
+          <div class="scene-content">
+            <div class="emotion-card ri delay-1">
+              <div class="emotion-flower ri delay-2">🌸</div>
+              <div id="s4-lines">
+                <p class="em-line">Some people make life more beautiful...</p>
+                <p class="em-line">...just by being part of it.</p>
+                <p class="em-line">And you are one of <em>those</em> people.</p>
+                <p class="em-line em-highlight">❤️ &nbsp;My Sister &nbsp;❤️</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ┌────────────────────────────────────────┐
+             │  SCENE 5  — BIG BIRTHDAY REVEAL 🎂    │
+             └────────────────────────────────────────┘ -->
+        <section id="scene-5" class="scene scene-reveal" aria-label="Birthday reveal">
+          <div class="scene-bg-gradient bg-scene5"></div>
+          <div class="scene-content">
+            <div class="cake-icon ri delay-1">🎂</div>
+            <h2 class="reveal-main-title ri delay-2">Happy Birthday!</h2>
+            <div class="reveal-sister ri delay-3">❤️ &nbsp;To My Amazing Sister &nbsp;❤️</div>
+            <div class="reveal-wishes ri delay-4">
+              <p>Wishing you endless happiness, contagious laughter, boundless adventures, and all the love in the universe. ✨</p>
+            </div>
+            <div class="reveal-sparkle-row ri delay-5">✨ 🌸 💖 🌟 💕 ✨</div>
+          </div>
+        </section>
+
+        <!-- ┌────────────────────────────────────────┐
+             │  SCENE 6  — CINEMATIC 3D GALLERY      │
+             └────────────────────────────────────────┘ -->
+        <section id="scene-6" class="scene scene-gallery" aria-label="Photo gallery">
+          <div class="scene-bg-gradient bg-scene6"></div>
+          <div class="scene-content">
+            <h2 class="scene-title ri delay-1">Gallery of Smiles 📸</h2>
+            <p class="scene-sub ri delay-2">Swipe cards to explore</p>
+            <div class="gallery-stage ri delay-3">
+              <div class="gallery-track" id="gallery-track">
+                <div class="g-card"><img src="images/sister-001.jpeg" alt="Memory" loading="lazy"><div class="g-card-info"><strong>Pure Joy</strong><span>Laughter that cures everything</span></div></div>
+                <div class="g-card"><img src="images/sister-002.jpeg" alt="Memory" loading="lazy"><div class="g-card-info"><strong>Golden Days</strong><span>Times we wish we could freeze</span></div></div>
+                <div class="g-card"><img src="images/sister-003.jpeg" alt="Memory" loading="lazy"><div class="g-card-info"><strong>Always Shining</strong><span>Radiating warmth everywhere</span></div></div>
+                <div class="g-card"><img src="images/sister-004.jpeg" alt="Memory" loading="lazy"><div class="g-card-info"><strong>Partner in Crime</strong><span>Together through everything</span></div></div>
+                <div class="g-card"><img src="images/sister-005.jpeg" alt="Memory" loading="lazy"><div class="g-card-info"><strong>Dream Chaser</strong><span>Inspiring us every single day</span></div></div>
+                <div class="g-card"><img src="images/sister-006.jpeg" alt="Memory" loading="lazy"><div class="g-card-info"><strong>Sweetest Heart</strong><span>The soul of our home</span></div></div>
+                <div class="g-card"><img src="images/sister-007.jpeg" alt="Memory" loading="lazy"><div class="g-card-info"><strong>Unstoppable You</strong><span>Nothing can hold you back</span></div></div>
+                <div class="g-card"><img src="images/sister-008.jpeg" alt="Memory" loading="lazy"><div class="g-card-info"><strong>Forever Memories</strong><span>Moments held in our hearts</span></div></div>
+              </div>
+            </div>
+            <div class="gallery-controls ri delay-4">
+              <button id="gallery-btn-prev" class="gal-btn" aria-label="Previous">‹</button>
+              <div class="gallery-dots-row" id="gallery-dots"></div>
+              <button id="gallery-btn-next" class="gal-btn" aria-label="Next">›</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ┌────────────────────────────────────────┐
+             │  SCENE 7  — PERSONAL LETTER           │
+             └────────────────────────────────────────┘ -->
+        <section id="scene-7" class="scene scene-letter" aria-label="Personal letter">
+          <div class="scene-bg-gradient bg-scene7"></div>
+          <div class="scene-content">
+            <h2 class="scene-title ri delay-1">A Letter For You 💌</h2>
+            <div class="letter-card ri delay-2">
+              <div class="letter-header">
+                <span class="letter-greeting">Dear Sis,</span>
+                <span class="letter-wax">💌</span>
+              </div>
+              <div class="letter-body" id="s7-letter-content">
+                <p>I may not always say it out loud, but having you as my sister is one of the greatest blessings of my life.</p>
+                <p>Thank you for the endless laughter, for listening when I need it most, and for always being my biggest supporter no matter what.</p>
+                <p>On your special birthday, I pray all your biggest dreams turn into reality. You deserve every happiness this world has to offer.</p>
+                <p>Keep spreading your wonderful light, because the world is so much better with you in it. 🌟</p>
+              </div>
+              <div class="letter-sig" id="s7-signature">With infinite love &amp; hugs ❤️</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ┌────────────────────────────────────────┐
+             │  SCENE 8  — TWO MORE PHOTO MEMORIES   │
+             └────────────────────────────────────────┘ -->
+        <section id="scene-8" class="scene scene-photos-2" aria-label="More memories">
+          <div class="scene-bg-gradient bg-scene8"></div>
+          <div class="scene-content">
+            <p class="scene-label ri delay-1">📸 &nbsp;MORE MEMORIES</p>
+            <h2 class="scene-title ri delay-2">Every Chapter of You ✨</h2>
+            <div class="double-photos ri delay-3">
+              <div class="polaroid-frame p1 tilt-right float-frame">
+                <div class="polaroid-img-wrapper">
+                  <img src="images/sister-009.jpeg" alt="Joyful and free" loading="lazy">
+                </div>
+                <div class="polaroid-caption">Joyful &amp; free 🌸</div>
+              </div>
+              <div class="polaroid-frame p2 tilt-left float-frame slow">
+                <div class="polaroid-img-wrapper">
+                  <img src="images/sister-010.jpeg" alt="Always golden" loading="lazy">
+                </div>
+                <div class="polaroid-caption">Always golden ✨</div>
+              </div>
+            </div>
+            <div class="scene-quote-box ri delay-4">
+              <p class="scene-quote-text">"You make ordinary moments extraordinary."</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ┌────────────────────────────────────────┐
+             │  SCENE 9  — GIFT SURPRISE 🎁          │
+             └────────────────────────────────────────┘ -->
+        <section id="scene-9" class="scene scene-gift" aria-label="Gift surprise">
+          <div class="scene-bg-gradient bg-scene9"></div>
+          <div class="scene-content">
+            <h2 class="scene-title ri delay-1">One More Surprise... 🎁</h2>
+            <p class="scene-sub ri delay-2" id="s9-tap-instruction">Tap the gift box!</p>
+            <div id="gift-stage" class="gift-stage ri delay-3">
+              <div id="gift-trigger" class="gift-wrapper" title="Tap to open!">
+                <div class="gift-lid">
+                  <div class="gift-bow">🎀</div>
+                  <div class="gift-rib-v"></div>
+                </div>
+                <div class="gift-body">
+                  <div class="gift-rib-v"></div>
+                  <div class="gift-rib-h"></div>
+                </div>
+              </div>
+              <div class="gift-reveal">
+                <div class="polaroid-frame gift-photo mx-auto">
+                  <div class="polaroid-img-wrapper">
+                    <img src="images/sister-007.jpeg" alt="Gift photo" loading="lazy">
+                  </div>
+                  <div class="polaroid-caption">Best Sister Ever 🌟</div>
+                </div>
+                <p class="gift-msg" id="s9-opened-msg">You are the greatest gift to our family! 🌟</p>
+                <p class="gift-note" id="s9-gift-note">May this year bring magical surprises &amp; endless joy! 💖</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ┌────────────────────────────────────────┐
+             │  SCENE 10 — FINAL CELEBRATION 🎉      │
+             └────────────────────────────────────────┘ -->
+        <section id="scene-10" class="scene scene-final" aria-label="Final celebration">
+          <div class="scene-bg-gradient bg-scene10"></div>
+          <div class="scene-content">
+            <div class="final-emoji ri delay-1">🎉</div>
+            <div class="final-hero-group ri delay-2">
+              <h2 class="final-title">Happy Birthday</h2>
+              <div class="final-sister">Chelli ❤️</div>
+            </div>
+            <div class="final-strip-container ri delay-3">
+              <div class="final-strip" id="final-strip">
+                <div class="strip-card" style="--r:-3deg">
+                  <div class="strip-img-wrapper">
+                    <img src="images/sister-001.jpeg" alt="Sister smile" loading="lazy">
+                  </div>
+                  <div class="strip-caption">Pure Joy ✨</div>
+                </div>
+                <div class="strip-card" style="--r:2.5deg">
+                  <div class="strip-img-wrapper">
+                    <img src="images/sister-003.jpeg" alt="Sister moment" loading="lazy">
+                  </div>
+                  <div class="strip-caption">Precious 💕</div>
+                </div>
+                <div class="strip-card" style="--r:-2deg">
+                  <div class="strip-img-wrapper">
+                    <img src="images/sister-006.jpeg" alt="Sister sweetness" loading="lazy">
+                  </div>
+                  <div class="strip-caption">Sweet Heart 🌸</div>
+                </div>
+                <div class="strip-card" style="--r:3deg">
+                  <div class="strip-img-wrapper">
+                    <img src="images/sister-008.jpeg" alt="Sister shining" loading="lazy">
+                  </div>
+                  <div class="strip-caption">Forever Love 🌟</div>
+                </div>
+                <div class="strip-card" style="--r:-2.5deg">
+                  <div class="strip-img-wrapper">
+                    <img src="images/sister-010.jpeg" alt="Sister golden" loading="lazy">
+                  </div>
+                  <div class="strip-caption">Golden Days ❤️</div>
+                </div>
+              </div>
+            </div>
+            <ul class="final-words ri delay-4">
+              <li>Keep smiling. 😊</li>
+              <li>Keep shining. 🌟</li>
+              <li>Keep being beautifully you. ❤️</li>
+            </ul>
+            <div class="final-footer ri delay-5">
+              <button id="btn-replay" class="btn-glow btn-replay">✨ Replay Journey ✨</button>
+              <p class="made-with-love">Made with ❤️ just for you.</p>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /scene-track -->
+
+    </div><!-- /cinema-viewport -->
+  </main>
+
+  <!-- Audio element — plays birthday.mp3 from audio folder -->
+  <audio id="bg-audio" preload="auto" loop>
+    <source src="audio/birthday.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="js/config.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/scenes.js"></script>
+  <script src="js/swipe.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
